@@ -64,7 +64,7 @@
 
 	_reactDom2.default.render(_react2.default.createElement(
 	  _reactRouter.Router,
-	  null,
+	  { history: _reactRouter.hashHistory },
 	  _routes2.default
 	), document.getElementById('app'));
 
