@@ -1,4 +1,12 @@
 import React from 'react';
+//import firebase from 'firebase';
+
+//let config = {
+//  apiKey: 'B6ECZ41bmgxgc7KZvEl6lF9mCQNCoOVH7VgiH9Dr',
+//  databaseURL: 'https://reactprovectusapp.firebaseio.com/'
+//}
+//
+//firebase.initializeApp(config);
 
 export default class Main extends React.Component {
   render() {

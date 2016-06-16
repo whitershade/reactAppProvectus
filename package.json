@@ -17,10 +17,13 @@
   },
   "homepage": "https://github.com/whitershade/reactAppProvectus#readme",
   "dependencies": {
+    "firebase": "^2.3.2",
     "history": "^3.0.0",
     "react": "^15.1.0",
     "react-dom": "^15.1.0",
-    "react-router": "^2.4.1"
+    "react-mixin": "^3.0.5",
+    "react-router": "^2.4.1",
+    "reactfire": "^1.0.0"
   },
   "devDependencies": {
     "babel-core": "^6.9.1",

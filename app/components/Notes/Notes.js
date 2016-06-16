@@ -1,11 +1,13 @@
 import React from 'react';
+import NotesList from './NotesList';
 
 export default class Notes extends React.Component {
   render() {
+    console.log('Notes:', this.props.notes);
     return (
       <div> 
-        <p>NOTES</p> 
-        <p>Notes: {this.props.notes}</p>
+        <h3> Notes for {this.props.username} </h3> 
+        <NotesList notes={this.props.notes} />
       </div>
     )
   }
