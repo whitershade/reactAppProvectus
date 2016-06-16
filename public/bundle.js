@@ -26200,6 +26200,12 @@
 
 	exports.default = Repos;
 
+
+	Repos.propTypes = {
+	  username: _react2.default.PropTypes.string.isRequired,
+	  repos: _react2.default.PropTypes.array.isRequired
+	};
+
 /***/ },
 /* 234 */
 /***/ function(module, exports, __webpack_require__) {
@@ -26267,6 +26273,12 @@
 
 	exports.default = UserProfiles;
 
+
+	UserProfiles.propTypes = {
+	  username: _react2.default.PropTypes.string.isRequired,
+	  bio: _react2.default.PropTypes.object.isRequired
+	};
+
 /***/ },
 /* 235 */
 /***/ function(module, exports, __webpack_require__) {
@@ -26307,7 +26319,6 @@
 	  _createClass(Notes, [{
 	    key: 'render',
 	    value: function render() {
-	      console.log('Notes:', this.props.notes);
 	      return _react2.default.createElement(
 	        'div',
 	        null,
@@ -26327,6 +26338,12 @@
 	}(_react2.default.Component);
 
 	exports.default = Notes;
+
+
+	Notes.propTypes = {
+	  username: _react2.default.PropTypes.string.isRequired,
+	  notes: _react2.default.PropTypes.array.isRequired
+	};
 
 /***/ },
 /* 236 */
