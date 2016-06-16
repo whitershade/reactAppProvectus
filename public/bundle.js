@@ -26251,7 +26251,7 @@
 /* 234 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -26281,18 +26281,41 @@
 	  }
 
 	  _createClass(Repos, [{
-	    key: 'render',
+	    key: "render",
 	    value: function render() {
-	      console.log(this.props.repos);
+	      var repos = this.props.repos.map(function (repo, index) {
+	        return _react2.default.createElement(
+	          "li",
+	          { className: "list-group-item", key: index },
+	          repo.html_url && _react2.default.createElement(
+	            "h4",
+	            null,
+	            _react2.default.createElement(
+	              "a",
+	              { href: repo.html_url },
+	              repo.name
+	            )
+	          ),
+	          repo.description && _react2.default.createElement(
+	            "p",
+	            null,
+	            repo.description
+	          )
+	        );
+	      });
 	      return _react2.default.createElement(
-	        'div',
+	        "div",
 	        null,
 	        _react2.default.createElement(
-	          'p',
+	          "h3",
 	          null,
-	          'REPOSS'
+	          "User Repos"
 	        ),
-	        'REPOS:'
+	        _react2.default.createElement(
+	          "ul",
+	          { className: "list-group" },
+	          repos
+	        )
 	      );
 	    }
 	  }]);
@@ -26312,7 +26335,7 @@
 /* 235 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -26342,29 +26365,75 @@
 	  }
 
 	  _createClass(UserProfiles, [{
-	    key: 'render',
+	    key: "render",
 	    value: function render() {
 	      return _react2.default.createElement(
-	        'div',
+	        "div",
 	        null,
-	        _react2.default.createElement(
-	          'p',
-	          null,
-	          ' USER PROFILE! '
+	        this.props.bio.avatar_url && _react2.default.createElement(
+	          "li",
+	          { className: "list-group-item" },
+	          " ",
+	          _react2.default.createElement("img", { src: this.props.bio.avatar_url, className: "img-rounded img-responsive" })
 	        ),
-	        _react2.default.createElement(
-	          'p',
-	          null,
-	          ' Username: ',
-	          this.props.username,
-	          ' '
+	        this.props.bio.name && _react2.default.createElement(
+	          "li",
+	          { className: "list-group-item" },
+	          "Name: ",
+	          this.props.bio.name
 	        ),
-	        _react2.default.createElement(
-	          'p',
-	          null,
-	          ' Bio: ',
-	          this.props.bio.name,
-	          ' '
+	        this.props.bio.login && _react2.default.createElement(
+	          "li",
+	          { className: "list-group-item" },
+	          "Username: ",
+	          this.props.bio.login
+	        ),
+	        this.props.bio.email && _react2.default.createElement(
+	          "li",
+	          { className: "list-group-item" },
+	          "Email: ",
+	          this.props.bio.email
+	        ),
+	        this.props.bio.location && _react2.default.createElement(
+	          "li",
+	          { className: "list-group-item" },
+	          "Location: ",
+	          this.props.bio.location
+	        ),
+	        this.props.bio.company && _react2.default.createElement(
+	          "li",
+	          { className: "list-group-item" },
+	          "Company: ",
+	          this.props.bio.company
+	        ),
+	        this.props.bio.followers && _react2.default.createElement(
+	          "li",
+	          { className: "list-group-item" },
+	          "Followers: ",
+	          this.props.bio.followers
+	        ),
+	        this.props.bio.following && _react2.default.createElement(
+	          "li",
+	          { className: "list-group-item" },
+	          "Following: ",
+	          this.props.bio.following
+	        ),
+	        this.props.bio.public_repos && _react2.default.createElement(
+	          "li",
+	          { className: "list-group-item" },
+	          "Public Repos: ",
+	          this.props.bio.public_repos
+	        ),
+	        this.props.bio.blog && _react2.default.createElement(
+	          "li",
+	          { className: "list-group-item" },
+	          "Blog: ",
+	          _react2.default.createElement(
+	            "a",
+	            { href: this.props.bio.blog },
+	            " ",
+	            this.props.bio.blog
+	          )
 	        )
 	      );
 	    }
