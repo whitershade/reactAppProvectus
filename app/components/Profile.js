@@ -11,7 +11,7 @@ export default class Profile extends React.Component {
   constructor() {
     super();
     this.state = {
-      notes: [1,2,3],
+      notes: [1, 2, 3],
       bio: {
         name: "WhiterShade"
       },
@@ -21,7 +21,6 @@ export default class Profile extends React.Component {
   }
   componentDidMount() {
     this.ref = new Firebase('https://github-note-taker.firebaseio.com/');
-    console.log(this);
     let childRef = this.ref.child(this.props.params.username);
     this.bindAsArray(childRef, 'notes');
   }
@@ -47,7 +46,7 @@ export default class Profile extends React.Component {
          <Notes 
            username={this.props.params.username} 
            notes={this.state.notes} 
-           addNote = {this._handleAddNote}/>
+           addNote = {this._handleAddNote} />
         </div>
       </div>
     )
