@@ -26188,18 +26188,28 @@
 	  }
 
 	  _createClass(Profile, [{
-	    key: 'componentDidMount',
-	    value: function componentDidMount() {
-	      this.ref = new _firebase2.default('https://github-note-taker.firebaseio.com/');
-	      var childRef = this.ref.child(this.props.params.username);
+	    key: 'init',
+	    value: function init(username) {
+	      var childRef = this.ref.child(username);
 	      this.bindAsArray(childRef, 'notes');
-
-	      _helpers2.default.getGithubInfo(this.props.params.username).then(function (data) {
+	      _helpers2.default.getGithubInfo(username).then(function (data) {
 	        this.setState({
 	          bio: data.bio,
 	          repos: data.repos
 	        });
 	      }.bind(this));
+	    }
+	  }, {
+	    key: 'componentWillReceiveProps',
+	    value: function componentWillReceiveProps(nextProps) {
+	      this.unbind('notes');
+	      this.init(nextProps.params.username);
+	    }
+	  }, {
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      this.ref = new _firebase2.default('https://github-note-taker.firebaseio.com/');
+	      this.init(this.props.params.username);
 	    }
 	  }, {
 	    key: 'componentWillUnmount',

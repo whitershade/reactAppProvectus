@@ -20,17 +20,23 @@ export default class Profile extends React.Component {
     }
     this._handleAddNote = this._handleAddNote.bind(this);
   }
-  componentDidMount() {
-    this.ref = new Firebase('https://github-note-taker.firebaseio.com/');
-    let childRef = this.ref.child(this.props.params.username);
+  init(username) {
+    let childRef = this.ref.child(username);
     this.bindAsArray(childRef, 'notes');
-    
-    helpers.getGithubInfo(this.props.params.username).then(function(data) {
+    helpers.getGithubInfo(username).then(function(data) {
       this.setState({
         bio: data.bio,
         repos: data.repos
       })
     }.bind(this));
+  }
+  componentWillReceiveProps(nextProps) {
+    this.unbind('notes');
+    this.init(nextProps.params.username);
+  }
+  componentDidMount() {
+    this.ref = new Firebase('https://github-note-taker.firebaseio.com/');
+    this.init(this.props.params.username);
   }
   
   componentWillUnmount() {
