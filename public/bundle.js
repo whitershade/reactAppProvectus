@@ -26192,7 +26192,7 @@
 	    value: function init(username) {
 	      var childRef = this.ref.child(username);
 	      this.bindAsArray(childRef, 'notes');
-	      _helpers2.default.getGithubInfo(username).then(function (data) {
+	      (0, _helpers2.default)(username).then(function (data) {
 	        this.setState({
 	          bio: data.bio,
 	          repos: data.repos
@@ -26476,7 +26476,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _NotesList = __webpack_require__(237);
+	var _NotesList = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./NotesList\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
 
 	var _NotesList2 = _interopRequireDefault(_NotesList);
 
@@ -26533,62 +26533,7 @@
 	};
 
 /***/ },
-/* 237 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var NotesList = function (_React$Component) {
-	  _inherits(NotesList, _React$Component);
-
-	  function NotesList() {
-	    _classCallCheck(this, NotesList);
-
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(NotesList).apply(this, arguments));
-	  }
-
-	  _createClass(NotesList, [{
-	    key: 'render',
-	    value: function render() {
-	      var notes = this.props.notes.map(function (note, index) {
-	        return _react2.default.createElement(
-	          'li',
-	          { className: 'list-group-item', key: index },
-	          note['.value']
-	        );
-	      });
-	      return _react2.default.createElement(
-	        'ul',
-	        { className: 'list-group' },
-	        notes
-	      );
-	    }
-	  }]);
-
-	  return NotesList;
-	}(_react2.default.Component);
-
-	exports.default = NotesList;
-
-/***/ },
+/* 237 */,
 /* 238 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -27692,6 +27637,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+	exports.default = getGithubInfo;
 
 	var _axios = __webpack_require__(244);
 
@@ -27707,18 +27653,11 @@
 	  return _axios2.default.get('https://api.github.com/users/' + username);
 	}
 
-	var helpers = {
-	  getGithubInfo: function getGithubInfo(username) {
-	    return _axios2.default.all([getRepos(username), getUserInfo(username)]).then(function (arr) {
-	      return {
-	        repos: arr[0].data,
-	        bio: arr[1].data
-	      };
-	    });
-	  }
-	};
-
-	exports.default = helpers;
+	function getGithubInfo(username) {
+	  return _axios2.default.all([getRepos(username), getUserInfo(username)]).then(function (arr) {
+	    return { repos: arr[0].data, bio: arr[1].data };
+	  });
+	}
 
 /***/ },
 /* 244 */

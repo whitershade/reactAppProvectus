@@ -6,7 +6,7 @@ import Notes from './Notes/Notes';
 import Firebase from 'firebase';
 import ReactMixin from 'react-mixin';
 import ReactFireMixin from 'reactfire';
-import helpers from '../utils/helpers';
+import getGithubInfo from '../utils/helpers';
 
 export default class Profile extends React.Component {
   constructor() {
@@ -23,7 +23,7 @@ export default class Profile extends React.Component {
   init(username) {
     let childRef = this.ref.child(username);
     this.bindAsArray(childRef, 'notes');
-    helpers.getGithubInfo(username).then(function(data) {
+    getGithubInfo(username).then(function(data) {
       this.setState({
         bio: data.bio,
         repos: data.repos
