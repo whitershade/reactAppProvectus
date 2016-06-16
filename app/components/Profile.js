@@ -6,6 +6,7 @@ import Notes from './Notes/Notes';
 import Firebase from 'firebase';
 import ReactMixin from 'react-mixin';
 import ReactFireMixin from 'reactfire';
+import helpers from '../utils/helpers';
 
 export default class Profile extends React.Component {
   constructor() {
@@ -13,9 +14,9 @@ export default class Profile extends React.Component {
     this.state = {
       notes: [1, 2, 3],
       bio: {
-        name: "WhiterShade"
+        name: ""
       },
-      repos: ['a', 'b', 'c']
+      repos: []
     }
     this._handleAddNote = this._handleAddNote.bind(this);
   }
@@ -23,6 +24,13 @@ export default class Profile extends React.Component {
     this.ref = new Firebase('https://github-note-taker.firebaseio.com/');
     let childRef = this.ref.child(this.props.params.username);
     this.bindAsArray(childRef, 'notes');
+    
+    helpers.getGithubInfo(this.props.params.username).then(function(data) {
+      this.setState({
+        bio: data.bio,
+        repos: data.repos
+      })
+    }.bind(this));
   }
   
   componentWillUnmount() {
