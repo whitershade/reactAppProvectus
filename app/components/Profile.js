@@ -17,16 +17,23 @@ export default class Profile extends React.Component {
       },
       repos: ['a', 'b', 'c']
     }
+    this._handleAddNote = this._handleAddNote.bind(this);
   }
   componentDidMount() {
-  this.ref = new Firebase('https://github-note-taker.firebaseio.com/');
-  let childRef = this.ref.child(this.props.params.username);
-  this.bindAsArray(childRef, 'notes');
-//  this.bindAsArray(firebase.database().ref().child(this.props.params.username), 'notes');
+    this.ref = new Firebase('https://github-note-taker.firebaseio.com/');
+    console.log(this);
+    let childRef = this.ref.child(this.props.params.username);
+    this.bindAsArray(childRef, 'notes');
   }
+  
   componentWillUnmount() {
     this.unbind('notes');
   }
+  
+  _handleAddNote(newNote) {
+    this.ref.child(this.props.params.username).child(this.state.notes.length).set(newNote);
+  }
+  
   render() {
     return (
       <div className="row">
@@ -37,7 +44,10 @@ export default class Profile extends React.Component {
          <Repos username={this.props.params.username} repos={this.state.repos} />
         </div>
         <div className="col-md-4">
-         <Notes username={this.props.params.username} notes={this.state.notes} />
+         <Notes 
+           username={this.props.params.username} 
+           notes={this.state.notes} 
+           addNote = {this._handleAddNote}/>
         </div>
       </div>
     )
