@@ -12,23 +12,20 @@ export default class Profile extends React.Component {
   constructor() {
     super();
     this.state = {
-      notes: [1, 2, 3],
-      bio: {
-        name: ""
-      },
+      notes: [],
+      bio: {},
       repos: []
     }
-    this._handleAddNote = this._handleAddNote.bind(this);
+    this.handleAddNote = this.handleAddNote.bind(this);
   }
   init(username) {
     let childRef = this.ref.child(username);
     this.bindAsArray(childRef, 'notes');
     getGithubInfo(username).then(function(data) {
-      this.setState({
-        bio: data.bio,
-        repos: data.repos
-      })
-    }.bind(this));
+    this.setState({
+      bio: data.bio,
+      repos: data.repos
+    })}.bind(this));
   }
   componentWillReceiveProps(nextProps) {
     this.unbind('notes');
@@ -38,12 +35,10 @@ export default class Profile extends React.Component {
     this.ref = new Firebase('https://github-note-taker.firebaseio.com/');
     this.init(this.props.params.username);
   }
-  
   componentWillUnmount() {
     this.unbind('notes');
   }
-  
-  _handleAddNote(newNote) {
+  handleAddNote(newNote) {
     this.ref.child(this.props.params.username).child(this.state.notes.length).set(newNote);
   }
   
@@ -60,7 +55,7 @@ export default class Profile extends React.Component {
          <Notes 
            username={this.props.params.username} 
            notes={this.state.notes} 
-           addNote = {this._handleAddNote} />
+           addNote = {this.handleAddNote} />
         </div>
       </div>
     )
